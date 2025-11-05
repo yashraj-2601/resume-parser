@@ -1,8 +1,11 @@
 import os
-from pydantic import BaseModel
+from pydantic import BaseSettings
 
-class Settings(BaseModel):
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql+psycopg2://postgres:postgres@localhost:5432/resumes")
+class Settings(BaseSettings):
+    DATABASE_URL: str = os.getenv(
+        "DATABASE_URL",
+        "postgresql+psycopg2://postgres:postgres@localhost:5432/resumes"
+    )
 
-def get_settings() -> Settings:
-    return Settings()
+# this object is what wsgi.py expects
+settings = Settings()
