@@ -6,9 +6,10 @@ from .utils import COMMON_SKILLS, DEGREE_PATTERNS
 
 _nlp = spacy.load("en_core_web_sm")
 
-EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
-PHONE_RE = re.compile(r"(?:\\+?\\d{1,3}[ -]?)?(?:\\(?\\d{3}\\)?[ -]?\\d{3}[ -]?\\d{4})")
+EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+PHONE_RE = re.compile(r"(?:\+?\d{1,3}[ -]?)?(?:\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4})")
 DEGREE_RE = re.compile("|".join(DEGREE_PATTERNS), re.IGNORECASE)
+
 
 def extract_text_from_pdf(file_path: str) -> str:
     text = []
@@ -66,3 +67,4 @@ def parse_pdf_to_dict(file_path: str) -> Dict:
         "education": education,
         "experience_years": exp,
     }
+
