@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from .config import get_settings
 from .database import init_db
 from .routes import api_bp
+from flask import redirect
 
 load_dotenv()
 
@@ -23,6 +24,15 @@ def create_app():
     def health():
         return {"status": "ok"}
 
+    app.get("/")
+def index():
+    return redirect("/apidocs", code=302)
+
+@app.get("/docs")
+def docs_redirect():
+    return redirect("/apidocs", code=302)
+
     return app
 
 app = create_app()
+
