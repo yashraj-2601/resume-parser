@@ -2,15 +2,13 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    # defaults used only if env vars are missing
-    DATABASE_URL: str = "postgresql+psycopg2://postgres:postgres@localhost:5432/resumes"
+    DATABASE_URL: str = "postgresql://resume_parser_db_z266_user:bgKHprxxf0inbXiKMyUVBugjniu4Il4f@dpg-d45tinadbo4c7385g5ng-a.singapore-postgres.render.com/resume_parser_db_z266?sslmode=require"
     FLASK_ENV: str = "production"
-    SECRET_KEY: str = "change-me"
+    SECRET_KEY: str = "super_secret_key"
 
-    # load from environment (and .env locally)
     model_config = SettingsConfigDict(
         env_file=".env",
-        env_prefix="",    # read exact names
+        env_prefix="",  # read exact env variable names
         extra="ignore"
     )
 
